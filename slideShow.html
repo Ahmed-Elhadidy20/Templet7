@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide Show</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="javascript/main.js"></script>
+  <script defer src="javascript/slider.js"></script>
+</head>
+<body id="body">
+  <header id="header" class="myheader">
+    <a href="index.html"><h1 id="tslider"></h1></a>
+    <nav>
+      <ul class="parent">
+        <li>
+          <a href="https://courses4arab.com/#available-courses">
+            ALL project
+          </a>
+        </li>
+        <li><a href="slideShow.html"> Slider Show </a></li>
+        <li id="dark" class="mode">Change Mode</li>
+        <li id="changecolor">
+          Change Color
+          <ul id="hiddenul" style="display: none">
+            <li id="headerbg">Header BG</li>
+            <li id="titlebg">Title BG</li>
+            <li id="titlecolor">Title color</li>
+            <li id="sectionbg">section BG</li>
+            <li id="reast" style="display: none">Reast</li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+   <main id="main">
+     <section>
+
+       <h1 dir="rtl" class="hed">Slider - Slide Show</h1>
+
+       <div class="sliderContainer">
+
+        <div id="slidMain" class="slideContent"> 
+            
+        </div>
+       </div>
+       <div class="mainButton"> 
+
+          <button id="prev">&#10094; prev</button>
+          
+          <div  class="numbres">
+            <button class="myNumber active-num">1</button>
+            <button class="myNumber">2</button>
+            <button class="myNumber">3</button>
+            <button class="myNumber">4</button>
+            <button class="myNumber">5</button>
+            
+          </div>
+          
+          <button id="next">next &#10095;</button>
+      </div>
+     </section>
+   </main>
+  </body>
+</html>
