@@ -1,4 +1,4 @@
-// الكتابة التلقائية للعنوان (موجودة بالفعل)
+// الكتابة التلقائية للعنوان 
 let i = 1;
 const autowriting = () => {
   const title = "Ahmed_Elhadidy";
@@ -8,7 +8,7 @@ const autowriting = () => {
 const stopFun = setInterval(autowriting, 400);
 
 // ---------------------------------
-// سلايدر الصور (تم إصلاحه)
+// سلايدر الصور
 const Next = document.getElementById("next");
 const prev = document.getElementById("prev");
 const slidMain = document.getElementById("slidMain");
