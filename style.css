@@ -637,3 +637,122 @@ details p {
   transform: translateX(0) !important;
   scale: 1 !important;
 }
+/* . للأجهزة اللوحية والشاشات المتوسطة */
+@media (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .left-section,
+  .right-section {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  h1:not(#header > h1) {
+    width: 80%;
+    font-size: 1.5rem;
+    padding: 10px;
+  }
+
+  .sidekick {
+    font-size: 1.5em;
+  }
+
+  /* جعل iframe متجاوبًا */
+  #containeriframe {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* نسبة 16:9 */
+    height: 0;
+    overflow: hidden;
+  }
+
+  #containeriframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* تحسين حاوية السلايدر (في صفحة slideShow) */
+  .sliderContainer {
+    width: 95%;
+    margin: 20px auto;
+  }
+
+  .slideContent {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .slideContent img {
+    width: 100% !important;
+    height: auto !important;
+    position: relative;
+  }
+
+  .mainButton {
+    width: 95%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .numbres {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .colok-container {
+    width: 60%;
+  }
+}
+
+/* للهواتف الصغيرة */
+@media (max-width: 480px) {
+  .parent {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  h1:not(#header > h1) {
+    width: 95%;
+    font-size: 1.2rem;
+  }
+
+  .sidekick {
+    font-size: 1.2em;
+  }
+
+  .myButton {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .mainButton #prev,
+  .mainButton #next {
+    padding: 0.3em 0.8em;
+  }
+
+  .numbres button {
+    padding: 0.1em 0.3em;
+    margin: 0 2px;
+  }
+
+  .colok-container {
+    width: 80%;
+  }
+
+  .q1, .q2, .q3, details {
+    width: 95%;
+  }
+
+  .content {
+    font-size: 1em;
+  }
+    }
