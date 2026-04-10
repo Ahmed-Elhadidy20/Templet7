@@ -1,126 +1,89 @@
-
-// auto writing title
-
+// الكتابة التلقائية للعنوان (موجودة بالفعل)
 let i = 1;
-
 const autowriting = () => {
   const title = "Ahmed_Elhadidy";
-
   tslider.innerText = title.slice(0, i);
-
   i++;
 };
-
 const stopFun = setInterval(autowriting, 400);
-// 
 
+// ---------------------------------
+// سلايدر الصور (تم إصلاحه)
 const Next = document.getElementById("next");
 const prev = document.getElementById("prev");
-
+const slidMain = document.getElementById("slidMain");
+const parentNumbers = document.getElementsByClassName("numbres")[0];
 
 const imgB = [
-  `<img src="imge/popular-02.jpg" alt="">`,
-  `<img src="imge/popular-03.jpg" alt="">`,
-  `<img src="imge/popular-04.jpg" alt="">`,
-  `<img src="imge/popular-05.jpg" alt="">`,
-  `<img src="imge/popular-01.jpg" alt="">`
+  `<img src="imge/popular-01.jpg" alt="Image 1">`,
+  `<img src="imge/popular-02.jpg" alt="Image 2">`,
+  `<img src="imge/popular-03.jpg" alt="Image 3">`,
+  `<img src="imge/popular-04.jpg" alt="Image 4">`,
+  `<img src="imge/popular-05.jpg" alt="Image 5">`
 ];
 
-let indexImg = 0 ;
+let indexImg = 0;
 
-slidMain.innerHTML += imgB[indexImg];
+// دالة لعرض الشريحة الحالية
+function updateSlider() {
+  slidMain.innerHTML = imgB[indexImg];
+  slidMain.innerHTML += `<p class="slideNum">Slide #${indexImg + 1} of ${imgB.length}</p>`;
+}
 
-slidMain.innerHTML +=`<p class="slideNum">Slide#${indexImg + 1} OF ${imgB.length}</p>`     ;
-
+// عرض الشريحة الأولى
+updateSlider();
 prev.setAttribute("disabled", "");
 
-
-
-Next.addEventListener("click", (eo) => {
-
- 
-prev.removeAttribute("disabled");
-
- 
-
- indexImg++;
- 
- slidMain.innerHTML += imgB[indexImg];
-
- slidMain.innerHTML += `<p class="slideNum">Slide#${indexImg + 1} OF ${imgB.length}</p>`     ;
-
- if(indexImg+1 == imgB.length ){
-
-  Next.setAttribute("disabled", "" )
-
- }
-parentNumbers.getElementsByClassName("active-num")[0].classList.remove("active-num");
-
-parentNumbers.getElementsByTagName("button")[indexImg].classList.add("active-num")
-    
+// حدث زر التالي
+Next.addEventListener("click", () => {
+  if (indexImg + 1 < imgB.length) {
+    indexImg++;
+    updateSlider();
+    prev.removeAttribute("disabled");
+  }
+  if (indexImg + 1 === imgB.length) {
+    Next.setAttribute("disabled", "");
+  }
+  // تحديث الصنف active-num على الأزرار
+  document.querySelectorAll(".myNumber").forEach((btn, idx) => {
+    btn.classList.toggle("active-num", idx === indexImg);
+  });
 });
 
+// حدث زر السابق
+prev.addEventListener("click", () => {
+  if (indexImg > 0) {
+    indexImg--;
+    updateSlider();
+    Next.removeAttribute("disabled");
+  }
+  if (indexImg === 0) {
+    prev.setAttribute("disabled", "");
+  }
+  document.querySelectorAll(".myNumber").forEach((btn, idx) => {
+    btn.classList.toggle("active-num", idx === indexImg);
+  });
+});
 
-prev.addEventListener("click", (eo) => { 
-
- Next.removeAttribute("disabled"   );
-
- indexImg--;
-
- slidMain.innerHTML += imgB[indexImg];
- 
- slidMain.innerHTML += `<p class="slideNum">Slide#${indexImg + 1} OF ${imgB.length}</p>` ;
-
- if(indexImg == 0){
-  
-  prev.setAttribute("disabled", "" )
-
- }
- parentNumbers.getElementsByClassName("active-num")[0].classList.remove("active-num");
-
- parentNumbers.getElementsByTagName("button")[indexImg].classList.add("active-num")
- })
-
- const allButtons = document.querySelectorAll(".myNumber")
- 
- const parentNumbers = document.getElementsByClassName("numbres")[0]
- 
- 
- 
- allButtons.forEach(  (item, index) => {
-     
-     item.addEventListener("click", (eo) => {
- 
-         // remove the current "active-num" => add "active-num" to target element
-        parentNumbers.getElementsByClassName("active-num")[0].classList.remove("active-num")
-        
-        
-        item.classList.add("active-num")
- 
-        slidMain.innerHTML += imgB[indexImg];
-         slidMain.innerHTML += `<p class="slideNum">Slide#${index+ 1} OF ${imgB.length}</p>` ;
- 
-         indexImg = index
- 
- 
-     // last index
-
-     if (index == imgB.length-1) {
-        Next.setAttribute("disabled",  "disabled"  )
-        prev.removeAttribute("disabled"   )
-    
-         // first index
-    } else if (index == 0){
-        Next.removeAttribute("disabled"   )
-        prev.setAttribute("disabled",  "disabled"  )
+// أزرار الأرقام (1,2,3,4,5)
+const allButtons = document.querySelectorAll(".myNumber");
+allButtons.forEach((btn, idx) => {
+  btn.addEventListener("click", () => {
+    indexImg = idx;
+    updateSlider();
+    // إدارة حالة تعطيل الأزرار
+    if (indexImg === 0) {
+      prev.setAttribute("disabled", "");
+      Next.removeAttribute("disabled");
+    } else if (indexImg === imgB.length - 1) {
+      Next.setAttribute("disabled", "");
+      prev.removeAttribute("disabled");
     } else {
-        Next.removeAttribute("disabled"   )
-        prev.removeAttribute("disabled"   )
+      prev.removeAttribute("disabled");
+      Next.removeAttribute("disabled");
     }
- 
-     });
-
-    
- });
- 
- 
+    // تحديث الصنف active-num
+    allButtons.forEach(b => b.classList.remove("active-num"));
+    btn.classList.add("active-num");
+  });
+});
